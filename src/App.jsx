@@ -9,10 +9,10 @@ import ScrollToTop from './components/ScrollToTop';
 
 // Import pages
 import About from "./components/About";
+import Experience from "./components/Experience";
 import Skills from "./components/Skills";
 import Academics from "./components/Academics";
 import Projects from "./components/Projects";
-import CP from "./components/CP";
 import Contact from "./components/Contact";
 
 
@@ -68,15 +68,14 @@ const pageTransition = { type: "tween", ease: "anticipate", duration: 0.5 };
 const AnimatedRoutes = memo(() => {
     const location = useLocation();
     const routesConfig = [
-        // THE FIX: Render the About component on the root path '/'
-        { path: "/", Component: About },
-        { path: "/about", Component: About },
-        { path: "/skills", Component: Skills },
-        { path: "/academics", Component: Academics },
-        { path: "/projects", Component: Projects },
-        { path: "/cp", Component: CP },
-        { path: "/contact", Component: Contact },
-    ];
+  { path: "/", Component: About },
+  { path: "/about", Component: About },
+  { path: "/experience", Component: Experience },
+  { path: "/projects", Component: Projects },
+  { path: "/skills", Component: Skills },
+  { path: "/academics", Component: Academics },
+  { path: "/contact", Component: Contact },
+];
     
     return (
         <AnimatePresence mode="wait">
@@ -99,8 +98,7 @@ AnimatedRoutes.displayName = 'AnimatedRoutes';
 function App() {
   const [theme, setTheme] = useState(() => {
     const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) return storedTheme;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return storedTheme || "light";
   });
   const [sideNavOpen, setSideNavOpen] = useState(false);
 

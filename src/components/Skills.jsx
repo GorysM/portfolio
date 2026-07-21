@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, memo } from "react";
-import { Code, Layers, Terminal, Sparkles, Settings2 } from "lucide-react";
+import { Code, Layers, Terminal, Users, Settings2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 // --- Animation Variants (The "Staggered Entrance" Pattern) ---
@@ -84,12 +84,12 @@ const SkillSection = memo(({ section, hoveredTag, onTagHover, onTagLeave }) => {
 });
 SkillSection.displayName = "SkillSection";
 
-// --- Static Data (No changes needed) ---
+// --- Static Data ---
 const SKILLS_SECTIONS = [
-    { icon: <Code className="w-6 h-6" />, title: "Programming Languages", tags: ["C", "C++", "Java", "JavaScript", "Python", "HTML", "CSS"] },
-    { icon: <Layers className="w-6 h-6" />, title: "Frameworks & Libraries", tags: ["React", "Tailwind CSS", "SFML", "NumPy", "Pandas"] },
-    { icon: <Terminal className="w-6 h-6" />, title: "Tools & Platforms", tags: ["Git", "GitHub", "VS Code", "Jupyter Notebook", "Sublime Text"] },
-    { icon: <Sparkles className="w-6 h-6" />, title: "Interests", tags: ["Competitive Programming", "DSA", "Machine Learning", "Web Development"] },
+    { icon: <Code className="w-6 h-6" />, title: "Programming Languages", tags: ["Python", "JavaScript", "Java", "SQL", "Swift", "Kotlin"] },
+    { icon: <Layers className="w-6 h-6" />, title: "Frameworks & Tools", tags: ["React", "Bootstrap", "Firebase", "Supabase", "Visual Studio Code", "Git"] },
+    { icon: <Terminal className="w-6 h-6" />, title: "Engineering Practice", tags: ["Web Development", "Object-Oriented Programming", "REST APIs", "Responsive Design"] },
+    { icon: <Users className="w-6 h-6" />, title: "Interpersonal & Domain", tags: ["Problem-Solving", "Critical Thinking", "Stakeholder Communication", "Client & Customer Relations", "Property Management"] },
 ];
 
 
@@ -116,9 +116,10 @@ const SkillsComponent = memo(function Skills() {
                 Skills & Interests
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-                Here you'll find a snapshot of my technical toolkit and passions. I
-                believe in learning by doing, and my skills reflect a blend of academic
-                depth and hands-on project work.
+                A snapshot of my technical toolkit alongside the interpersonal and
+                operational skills built over seven years in property management and
+                project delivery. This combination shapes how I design and build
+                software.
             </p>
         </motion.div>
         

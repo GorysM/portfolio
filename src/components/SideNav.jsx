@@ -2,26 +2,24 @@ import { useEffect, useCallback, memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   User,
+  Briefcase,
+  FolderKanban,
   BrainCircuit,
   GraduationCap,
-  FolderKanban,
-  Swords,
   Mail,
   X,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-// Move static data outside component
 const navLinks = [
   { to: "/about", icon: User, text: "About" },
+  { to: "/experience", icon: Briefcase, text: "Experience" },
+  { to: "/projects", icon: FolderKanban, text: "Projects" },
   { to: "/skills", icon: BrainCircuit, text: "Skills" },
   { to: "/academics", icon: GraduationCap, text: "Education" },
-  { to: "/projects", icon: FolderKanban, text: "Projects" },
-  { to: "/cp", icon: Swords, text: "CP" },
   { to: "/contact", icon: Mail, text: "Contact" },
 ];
 
-// Animation variants
 const navVariants = {
   closed: {
     x: "100%",
@@ -30,8 +28,6 @@ const navVariants = {
       type: "spring",
       stiffness: 250,
       damping: 30,
-      mass: 0.8,
-      when: "afterChildren",
     },
   },
   open: {
@@ -41,9 +37,7 @@ const navVariants = {
       type: "spring",
       stiffness: 250,
       damping: 30,
-      mass: 0.8,
       staggerChildren: 0.07,
-      delayChildren: 0.1,
     },
   },
 };
@@ -53,115 +47,96 @@ const itemVariants = {
   open: { y: 0, opacity: 1 },
 };
 
-const overlayVariants = {
-  hidden: { opacity: 0, pointerEvents: "none" },
-  visible: { opacity: 0.4, pointerEvents: "auto" },
-};
-
-// Memoized nav item component
 const NavItem = memo(({ link, onNavClick, isActive }) => {
   const Icon = link.icon;
+
   return (
-    <motion.li variants={itemVariants} className="w-full">
+    <motion.li variants={itemVariants}>
       <Link
         to={link.to}
         onClick={onNavClick}
-        className={`flex flex-row items-center justify-start gap-4 text-lg font-medium transition-colors duration-200 py-2 w-full
-          ${isActive ? "text-primary" : "text-foreground hover:text-primary"}
-        `}
-        style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+        className={`flex items-center gap-4 text-lg font-medium py-2 transition-colors ${
+          isActive
+            ? "text-neutral-900"
+            : "text-neutral-600 hover:text-neutral-900"
+        }`}
       >
-        <Icon className="w-5 h-5 flex-shrink-0" style={{ display: 'inline-block' }} />
-        <span className="leading-none" style={{ display: 'inline-block' }}>{link.text}</span>
+        <Icon className="w-5 h-5" />
+        <span>{link.text}</span>
       </Link>
     </motion.li>
   );
 });
+
 NavItem.displayName = "NavItem";
 
 const SideNav = memo(({ open, onClose }) => {
   const location = useLocation();
 
-  // Memoize event handlers
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === "Escape") onClose();
-  }, [onClose]);
-
-  const handleClickOutside = useCallback((e) => {
-    if (!e.target.closest(".side-nav-panel") && !e.target.closest(".hamburger")) {
-      onClose();
-    }
-  }, [onClose]);
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.key === "Escape") onClose();
+    },
+    [onClose]
+  );
 
   useEffect(() => {
     if (!open) return;
 
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleClickOutside);
     document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "";
     };
-  }, [open, handleKeyDown, handleClickOutside]);
+  }, [open, handleKeyDown]);
 
-  // Memoize nav items to prevent recreation
-  const navItems = useMemo(() =>
-    navLinks.map((link) => (
-      <NavItem
-        key={link.to}
-        link={link}
-        onNavClick={onClose}
-        isActive={location.pathname === link.to}
-      />
-    )), [onClose, location.pathname]
+  const navItems = useMemo(
+    () =>
+      navLinks.map((link) => (
+        <NavItem
+          key={link.to}
+          link={link}
+          onNavClick={onClose}
+          isActive={
+            location.pathname === link.to ||
+            (link.to === "/about" && location.pathname === "/")
+          }
+        />
+      )),
+    [location.pathname, onClose]
   );
 
   return (
     <>
-      {/* Overlay */}
       <motion.div
         initial={false}
-        animate={open ? "visible" : "hidden"}
-        variants={overlayVariants}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-0 bg-black z-40 lg:hidden"
+        animate={open ? { opacity: 0.35 } : { opacity: 0 }}
+        className={`fixed inset-0 bg-black z-40 min-[935px]:hidden ${
+          open ? "pointer-events-auto" : "pointer-events-none"
+        }`}
         onClick={onClose}
-        style={{
-          willChange: "opacity",
-          transform: "translate3d(0, 0, 0)"
-        }}
       />
 
-      {/* Navigation Panel */}
       <motion.nav
         initial={false}
         animate={open ? "open" : "closed"}
         variants={navVariants}
-        className="side-nav-panel fixed top-0 right-0 w-[270px] h-screen bg-card shadow-lg z-50 flex flex-col p-6 pt-8"
-        aria-label="Main Navigation"
-        style={{
-          willChange: "transform, opacity",
-          transform: "translate3d(0, 0, 0)"
-        }}
+        className="fixed top-0 right-0 w-[270px] h-screen bg-white shadow-xl z-50 flex flex-col p-6 pt-8 min-[935px]:hidden"
+        aria-label="Main navigation"
       >
-        {/* Close Button */}
         <motion.button
           variants={itemVariants}
-          className="self-end text-muted-foreground hover:text-primary transition-all duration-300 hover:rotate-90 cursor-pointer p-2 -mr-2 mb-8 will-change-transform"
-          aria-label="Close Menu"
+          className="self-end text-neutral-600 hover:text-neutral-900 p-2 mb-8"
+          aria-label="Close menu"
           type="button"
           onClick={onClose}
         >
           <X className="w-7 h-7" />
         </motion.button>
 
-        {/* Navigation Links */}
-        <ul className="flex-1 space-y-6">
-          {navItems}
-        </ul>
+        <ul className="space-y-6">{navItems}</ul>
       </motion.nav>
     </>
   );

@@ -1,161 +1,123 @@
-import { Github, Linkedin, Mail, FileText, GraduationCap } from "lucide-react";
+import { Github, Linkedin, Mail, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
-import { useMemo, memo } from "react";
 
-// Memoized social link component
-const SocialLink = memo(({ href, icon, title, className }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={className}
-    title={title}
-  >
-    {icon}
-  </a>
-));
-SocialLink.displayName = "SocialLink";
-
-// Memoized tag component
-const Tag = memo(({ tag }) => (
-  <span className="px-4 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all">
-    {tag}
-  </span>
-));
-Tag.displayName = "Tag";
-
-const SOCIAL_LINKS = [
+const socialLinks = [
   {
-    href: "https://github.com/shashank2401",
-    icon: <Github className="w-5 h-5" />,
+    href: "https://github.com/GorysM",
+    icon: Github,
     title: "GitHub",
   },
   {
-    href: "https://www.linkedin.com/in/shashankraj2401/",
-    icon: <Linkedin className="w-5 h-5" />,
+    href: "https://www.linkedin.com/in/grigorios-menegas-733581167/",
+    icon: Linkedin,
     title: "LinkedIn",
   },
   {
-    href: "mailto:shashankraj0124@gmail.com",
-    icon: <Mail className="w-5 h-5" />,
+    href: "mailto:gr.menegas@gmail.com",
+    icon: Mail,
     title: "Email",
   },
 ];
 
-const TAGS = [
-  "Competitive Programming",
-  "Data Structures",
-  "Algorithms",
-  "C++",
-  "Problem Solving",
-  "Web Development",
+const tags = [
+  "React",
+  "JavaScript",
+  "Next.js",
+  "Firebase",
+  "Supabase",
+  "Python",
+  "Property Technology",
+  "Product Development",
 ];
 
-const RESUME_URL =
-  "https://drive.google.com/file/d/1FIq3CNO73-M9GXjIhZAYo49gQGxgmudO/view?usp=sharing";
-
-export default memo(function About() {
-  const socialLinksElements = useMemo(
-    () =>
-      SOCIAL_LINKS.map(({ href, icon, title }) => (
-        <SocialLink
-          key={title}
-          href={href}
-          icon={icon}
-          title={title}
-          className="w-11 h-11 flex items-center justify-center rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:scale-105 transition-all"
-        />
-      )),
-    []
-  );
-
-  const tagElements = useMemo(
-    () => TAGS.map((tag) => <Tag key={tag} tag={tag} />),
-    []
-  );
-
+export default function About() {
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       className="w-full min-h-[80vh] flex items-center justify-center"
     >
-      <div className="flex flex-col md:flex-row items-center justify-center gap-12 w-full max-w-5xl px-4 py-12">
-        {/* Profile Image */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex-shrink-0 w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-white dark:border-neutral-900 shadow-md bg-neutral-200 dark:bg-neutral-800"
-          tabIndex={0}
-          aria-label="Profile photo of Shashank Raj"
-        >
-          <img
-            src="/assets/MyPhotograph.png"
-            alt="Shashank Raj"
-            loading="lazy"
-            decoding="async"
-            className="object-cover w-full h-full"
-            style={{ aspectRatio: "1/1" }}
-          />
-        </motion.div>
-
-        {/* Content */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex-1 flex flex-col items-center md:items-start"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-200/50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 mb-4">
-            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-primary uppercase tracking-wide">
-              About Me
+      <div className="w-full max-w-5xl px-6 py-16">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 mb-6">
+            <span className="w-2 h-2 rounded-full bg-neutral-900" />
+            <span className="text-sm font-semibold uppercase tracking-wide text-neutral-700">
+              Software Engineer & Product Builder
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-3 text-foreground text-center md:text-left">
-            Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-neutral-800 via-neutral-700 to-neutral-600 dark:from-white dark:via-neutral-300 dark:to-neutral-400 bg-clip-text text-transparent">
-              Shashank Raj
-            </span>
+          <h1 className="text-4xl sm:text-6xl font-bold leading-tight mb-6 text-neutral-900">
+            Hi, I&apos;m Grigorios Menegas.
           </h1>
 
-          <div className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground text-sm mb-2">
-            <GraduationCap className="w-4 h-4" />
-            <span>IIT (BHU) Varanasi</span>
+          <div className="flex items-center gap-2 text-neutral-600 mb-5">
+            <GraduationCap className="w-5 h-5" />
+            <span>
+              BSc Software Engineering, University of Westminster
+            </span>
           </div>
 
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mb-4 text-center md:text-left">
-            I'm a passionate student with a strong interest in{" "}
-            <span className="text-foreground font-medium">
-              competitive programming
-            </span>{" "}
-            and tackling challenging problems. I love crafting efficient
-            solutions and exploring new technologies. My journey in tech
-            combines rigorous academic training with hands-on project
-            experience.
+          <p className="text-lg sm:text-xl text-neutral-600 leading-relaxed mb-5">
+            I am a London-based software engineer and product builder creating
+            practical web applications that solve real operational problems.
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
-            {tagElements}
+          <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mb-8">
+            My background combines software engineering with more than seven
+            years of experience as a Property Manager, Block Manager and
+            Project Manager across London real estate. This gives me a strong
+            foundation in stakeholder communication, problem-solving and
+            project delivery, which I now apply to building practical
+            software.
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-8">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-4 py-2 rounded-full text-sm font-medium bg-white text-neutral-700 border border-neutral-300"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
 
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-            {socialLinksElements}
+          <div className="flex flex-wrap gap-3">
+            {socialLinks.map(({ href, icon: Icon, title }) => {
+              const isMailto = href.startsWith("mailto:");
+              return (
+                <a
+                  key={title}
+                  href={href}
+                  {...(!isMailto && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
+                  aria-label={title}
+                  className="w-11 h-11 flex items-center justify-center rounded-xl border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-100 hover:scale-105 transition-all"
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              );
+            })}
+
             <a
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 h-11 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:scale-105 transition-all"
+              href="/projects"
+              className="inline-flex items-center px-5 h-11 rounded-xl bg-neutral-900 text-white font-medium hover:bg-neutral-700 transition"
             >
-              <FileText className="w-4 h-4" />
-              Resume
+              View Projects
+            </a>
+
+            <a
+              href="/experience"
+              className="inline-flex items-center px-5 h-11 rounded-xl border border-neutral-300 bg-white text-neutral-700 font-medium hover:bg-neutral-100 transition"
+            >
+              View Experience
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
-});
+}

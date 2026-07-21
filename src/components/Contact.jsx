@@ -1,5 +1,5 @@
 import React, { useState, memo } from "react";
-import { Mail, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, Send, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -49,17 +49,9 @@ const StatusMessage = ({ status, message }) => {
       animate="visible"
       exit="hidden"
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`flex items-center gap-2 p-3 rounded-lg text-sm font-medium ${
-        status === "success"
-          ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800"
-          : status === "error"
-          ? "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800"
-          : "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800"
-      }`}
+      className="flex items-center gap-2 p-3 rounded-lg text-sm font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800"
     >
-      {status === "loading" && <Loader2 className="w-4 h-4 animate-spin" />}
-      {status === "success" && <CheckCircle2 className="w-4 h-4" />}
-      {status === "error" && <AlertCircle className="w-4 h-4" />}
+      <CheckCircle2 className="w-4 h-4" />
       {message}
     </motion.div>
   );
@@ -73,38 +65,26 @@ function ContactComponent() {
     message: "",
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setFormState({ status: "loading", message: "Sending, please wait..." });
 
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    const { name, email, message } = Object.fromEntries(formData.entries());
 
-    try {
-      const response = await fetch("https://formspree.io/f/mldnaeeb", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+    const subject = `Portfolio contact from ${name}`;
+    const body = `${message}\n\n— ${name} (${email})`;
+    const mailtoUrl = `mailto:gr.menegas@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
 
-      if (response.ok) {
-        setFormState({
-          status: "success",
-          message: "Thank you! Your message has been sent successfully.",
-        });
-        e.target.reset();
-        setTimeout(() => setFormState({ status: "idle", message: "" }), 5000);
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to send message");
-      }
-    } catch (error) {
-      setFormState({
-        status: "error",
-        message: "An error occurred. Please try again or email me directly.",
-      });
-      setTimeout(() => setFormState({ status: "idle", message: "" }), 5000);
-    }
+    window.location.href = mailtoUrl;
+
+    setFormState({
+      status: "success",
+      message: "Opening your email client — please send the message from there.",
+    });
+    e.target.reset();
+    setTimeout(() => setFormState({ status: "idle", message: "" }), 5000);
   };
 
   return (
@@ -130,13 +110,13 @@ function ContactComponent() {
 
         <motion.div variants={itemVariants}>
           <a
-            href="mailto:shashankraj0124@gmail.com"
+            href="mailto:gr.menegas@gmail.com"
             className="flex justify-center items-center gap-2 text-primary text-lg font-medium hover:underline transition-colors duration-200"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Mail className="w-5 h-5" />
-            shashankraj0124@gmail.com
+            gr.menegas@gmail.com
           </a>
         </motion.div>
 
@@ -152,29 +132,20 @@ function ContactComponent() {
           </AnimatePresence>
           
           <motion.div variants={itemVariants}>
-            <Input type="text" name="name" placeholder="Your Name" required disabled={formState.status === "loading"} className="text-foreground disabled:opacity-50" />
+            <Input type="text" name="name" placeholder="Your Name" required className="text-foreground" />
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <Input type="email" name="email" placeholder="Your Email" required disabled={formState.status === "loading"} className="text-foreground disabled:opacity-50" />
+            <Input type="email" name="email" placeholder="Your Email" required className="text-foreground" />
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <Textarea rows={4} name="message" placeholder="Your Message" required disabled={formState.status === "loading"} className="resize-y text-foreground disabled:opacity-50" />
+            <Textarea rows={4} name="message" placeholder="Your Message" required className="resize-y text-foreground" />
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <Button type="submit" disabled={formState.status === "loading"} className="w-full text-lg font-semibold py-3 flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
-              {formState.status === "loading" ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                <>
-                  Send Message <Send className="w-4 h-4" />
-                </>
-              )}
+            <Button type="submit" className="w-full text-lg font-semibold py-3 flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all duration-200">
+              Send Message <Send className="w-4 h-4" />
             </Button>
           </motion.div>
         </motion.form>

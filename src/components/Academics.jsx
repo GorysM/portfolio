@@ -1,5 +1,5 @@
 import React, { useMemo, memo } from "react";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
 // --- Animation Variants (The "Staggered Entrance" Pattern) ---
@@ -28,9 +28,9 @@ const itemVariants = {
 };
 
 
-// --- Child Component (No changes needed) ---
+// --- Child Component ---
 const EducationCard = memo(({ education }) => {
-  const { logo, alt, title, link, program, year, scoreLabel, score } = education;
+  const { icon: Icon, title, link, program, year, scoreLabel, score } = education;
 
   return (
     // This card is now an item in the list's stagger animation
@@ -38,28 +38,23 @@ const EducationCard = memo(({ education }) => {
       variants={itemVariants}
       className="bg-white/90 dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-2xl shadow p-6 flex items-center gap-6"
     >
-      <div className="w-16 h-16 flex-shrink-0 bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center shadow rounded-xl p-1 overflow-hidden">
-        <img
-          src={logo}
-          alt={alt}
-          className="w-full h-full object-contain rounded-lg"
-          loading="lazy"
-          decoding="async"
-          width={64}
-          height={64}
-          style={{ aspectRatio: "1/1" }}
-        />
+      <div className="w-16 h-16 flex-shrink-0 bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center shadow rounded-xl text-neutral-900 dark:text-neutral-100">
+        <Icon className="w-8 h-8" />
       </div>
       <div className="flex flex-col text-left gap-1">
         <h3 className="text-lg sm:text-xl font-semibold text-foreground">{title}</h3>
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-primary hover:underline hover:text-foreground dark:hover:text-primary-foreground/70 font-medium transition-colors duration-200"
-        >
-          {program}
-        </a>
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary hover:underline hover:text-foreground dark:hover:text-primary-foreground/70 font-medium transition-colors duration-200"
+          >
+            {program}
+          </a>
+        ) : (
+          <span className="text-sm text-primary font-medium">{program}</span>
+        )}
         <div className="text-sm text-muted-foreground mt-2 space-y-1">
           <p>
             <span className="font-medium text-foreground/80">Year:</span> {year}
@@ -75,27 +70,25 @@ const EducationCard = memo(({ education }) => {
 EducationCard.displayName = "EducationCard";
 
 
-// --- Static Data (No changes needed) ---
+// --- Static Data ---
 const ACADEMICS_DATA = [
   {
-    logo: "/assets/logos/iit_bhu.png",
-    alt: "IIT BHU Logo",
-    title: "Indian Institute of Technology (BHU) Varanasi",
-    link: "https://iitbhu.ac.in/dept/civ",
-    program: "B.Tech in Civil Engineering",
-    year: "2023 – 2027",
-    scoreLabel: "CGPA",
-    score: "8.14 / 10",
+    icon: GraduationCap,
+    title: "University of Westminster",
+    link: "https://www.westminster.ac.uk/",
+    program: "BSc (Hons) Software Engineering",
+    year: "June 2024",
+    scoreLabel: "Focus",
+    score: "OOP, web development, software design principles",
   },
   {
-    logo: "/assets/logos/sps_rohini.jpg",
-    alt: "SPS Rohini Logo",
-    title: "Sachdeva Public School, Rohini",
-    link: "https://www.spsrohini.com/",
-    program: "CBSE (Class XII - 2022, Class X - 2020)",
-    year: "2022",
-    scoreLabel: "Percentage",
-    score: "Class XII - 92.80%, Class X - 97.00%",
+    icon: Zap,
+    title: "EPAL Athens",
+    link: null,
+    program: "Certification in Electrical Engineering",
+    year: "June 2011",
+    scoreLabel: "Focus",
+    score: "Electrical systems fundamentals",
   },
 ];
 
@@ -127,9 +120,9 @@ const AcademicsComponent = memo(function Academics() {
                 Education
             </h2>
             <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-                My academic journey has been a blend of rigorous learning and practical
-                application, spanning general academics and engineering. Here are the
-                institutions and milestones that have shaped my foundation.
+                My academic background spans software engineering and electrical
+                engineering, giving me a foundation in both computing principles and
+                practical, systems-level thinking.
             </motion.p>
         </motion.div>
 
