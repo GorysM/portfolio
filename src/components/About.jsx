@@ -59,18 +59,22 @@ export default function About() {
           </div>
 
           <p className="text-lg sm:text-xl text-neutral-600 leading-relaxed mb-5">
-            I am a London-based software engineer and product builder creating
-            practical web applications that solve real operational problems.
+            I am a London-based Software Engineering graduate and product builder
+            focused on creating practical web applications with React and modern
+            cloud technologies.
           </p>
 
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mb-8">
-            My background combines software engineering with more than seven
-            years of experience as a Property Manager, Block Manager and
-            Project Manager across London real estate. This gives me a strong
-            foundation in stakeholder communication, problem-solving and
-            project delivery, which I now apply to building practical
-            software.
-          </p>
+            Alongside my technical background, I bring more than seven years of
+            professional experience across property management, block management,
+            project delivery and customer service. This combination allows me to
+            understand real operational challenges, communicate effectively with
+            stakeholders and translate business requirements into practical software
+            solutions. My recent work includes applications built with React,
+            JavaScript, Firebase, Supabase and cloud platforms including Microsoft
+            Azure, with a particular focus on property technology and operational
+            workflow improvement.
+        </p>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {tags.map((tag) => (
