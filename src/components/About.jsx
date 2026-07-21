@@ -104,7 +104,7 @@ export default function About() {
 
             <a
               href="/projects"
-              className="inline-flex items-center px-5 h-11 rounded-xl bg-neutral-900 text-white font-medium hover:bg-neutral-900 hover:text-white transition"
+              className="inline-flex items-center px-5 h-11 rounded-xl bg-white text-neutral-900 font-medium border border-neutral-900 hover:bg-neutral-100 transition"
             >
               View Projects
             </a>
