@@ -55,8 +55,8 @@ const Header = memo(({ onHamburgerClick }) => {
               className={`px-3 py-1.5 rounded-md text-base font-medium transition-colors
                 ${
                   isActive
-                    ? "text-neutral-900 font-semibold"
-                    : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100"
+                    ? "text-neutral-900 font-semibold border border-neutral-900"
+                    : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 border border-transparent"
                 }`}
             >
               {link.label}
