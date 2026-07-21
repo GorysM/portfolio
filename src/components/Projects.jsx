@@ -99,7 +99,7 @@ function ProjectCard({ project }) {
         href={project.liveUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-neutral-900 text-white font-medium border border-neutral-900 hover:bg-white hover:text-neutral-900 transition-colors"
+        className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-transparent text-neutral-900 font-medium border border-neutral-900 hover:bg-neutral-100 transition-colors"
       >
         View Live Project
         <ExternalLink className="w-4 h-4" />

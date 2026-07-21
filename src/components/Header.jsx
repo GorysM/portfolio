@@ -33,7 +33,7 @@ const Header = memo(({ onHamburgerClick }) => {
       variants={headerVariants}
       initial="hidden"
       animate="visible"
-      className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 sm:px-8 py-4 bg-white/80 backdrop-blur-md shadow-sm border-b border-neutral-200"
+      className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 sm:px-8 py-4 bg-white shadow-sm border-b border-neutral-200"
     >
       <Link
         to="/"
