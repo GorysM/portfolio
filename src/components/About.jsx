@@ -73,8 +73,7 @@ export default function About() {
             and communicating effectively with both technical and non technical
             stakeholders. Now seeking to develop deeper experience in cloud
             technologies, backend development and DevOps within a collaborative software
-            engineering team. I have the right to work in the UK through EU Settled
-            Status and do not require visa sponsorship.
+            engineering team.
           </p>
 
           <div className="flex flex-wrap gap-2 mb-8">
