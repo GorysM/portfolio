@@ -43,7 +43,7 @@ export default function About() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 mb-6">
             <span className="w-2 h-2 rounded-full bg-neutral-900" />
             <span className="text-sm font-semibold uppercase tracking-wide text-neutral-700">
-              Software Engineer & Product Builder
+              Software Engineer
             </span>
           </div>
 
