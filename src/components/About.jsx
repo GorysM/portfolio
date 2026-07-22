@@ -59,22 +59,23 @@ export default function About() {
           </div>
 
           <p className="text-lg sm:text-xl text-neutral-600 leading-relaxed mb-5">
-            I am a London-based Software Engineering graduate and product builder
-            focused on creating practical web applications with React and modern
-            cloud technologies.
+            I am a London-based Software Engineering graduate and product-minded
+            developer focused on building practical web applications using React,
+            JavaScript, TypeScript and modern cloud technologies.
           </p>
 
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mb-8">
             Alongside my technical background, I bring more than seven years of
-            professional experience across property management, block management,
-            project delivery and customer service. This combination allows me to
-            understand real operational challenges, communicate effectively with
-            stakeholders and translate business requirements into practical software
-            solutions. My recent work includes applications built with React,
-            JavaScript, Firebase, Supabase and cloud platforms including Microsoft
-            Azure, with a particular focus on property technology and operational
-            workflow improvement.
-        </p>
+            professional experience across property management, project delivery and
+            customer-facing operations. I am particularly strong at understanding real
+            operational challenges, translating business requirements into usable
+            software solutions and communicating effectively with both technical and
+            non-technical stakeholders. My recent work includes applications built with
+            Next.js, Firebase, Supabase and Microsoft Azure, and I am now looking to
+            develop deeper experience in cloud technologies, backend development and
+            DevOps within a collaborative software engineering team. I have the right to
+            work in the UK through EU Settled Status and do not require visa sponsorship.
+          </p>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {tags.map((tag) => (
