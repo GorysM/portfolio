@@ -59,22 +59,22 @@ export default function About() {
           </div>
 
           <p className="text-lg sm:text-xl text-neutral-600 leading-relaxed mb-5">
-            I am a London-based Software Engineering graduate and product-minded
-            developer focused on building practical web applications using React,
-            JavaScript, TypeScript and modern cloud technologies.
+            Software Engineering graduate and product minded developer with more than
+            seven years of experience across property management, project delivery and
+            customer facing operations. Experienced in developing practical web
+            applications using React, JavaScript, TypeScript, Next.js, Firebase and
+            Supabase, with growing exposure to Microsoft Azure, authentication, cloud
+            deployment and DevOps workflows.
           </p>
 
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mb-8">
-            Alongside my technical background, I bring more than seven years of
-            professional experience across property management, project delivery and
-            customer-facing operations. I am particularly strong at understanding real
-            operational challenges, translating business requirements into usable
-            software solutions and communicating effectively with both technical and
-            non-technical stakeholders. My recent work includes applications built with
-            Next.js, Firebase, Supabase and Microsoft Azure, and I am now looking to
-            develop deeper experience in cloud technologies, backend development and
-            DevOps within a collaborative software engineering team. I have the right to
-            work in the UK through EU Settled Status and do not require visa sponsorship.
+            Particularly strong at understanding operational challenges, translating
+            business requirements into practical and user friendly software solutions,
+            and communicating effectively with both technical and non technical
+            stakeholders. Now seeking to develop deeper experience in cloud
+            technologies, backend development and DevOps within a collaborative software
+            engineering team. I have the right to work in the UK through EU Settled
+            Status and do not require visa sponsorship.
           </p>
 
           <div className="flex flex-wrap gap-2 mb-8">
