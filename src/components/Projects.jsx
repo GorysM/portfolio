@@ -3,12 +3,18 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "Easy Lets PMS",
+    title: "LetCore",
     description:
-      "A property management web application created to centralise essential property information and support day-to-day management processes.",
-    technologies: ["React", "JavaScript", "Firebase", "Bootstrap"],
-    liveUrl: "https://easyletspms.netlify.app/App",
-    status: "Live project",
+      "An evolving property-operations platform designed to help property managers organise properties, compliance requirements, tasks and operational workflows from one central dashboard.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Supabase",
+    ],
+    liveUrl: "https://prop-app-gorysms-projects.vercel.app/",
+    status: "Active development",
   },
   {
     title: "Inspectly",
@@ -25,18 +31,12 @@ const projects = [
     status: "Beta / Live",
   },
   {
-    title: "LetCore",
+    title: "Easy Lets PMS",
     description:
-      "An evolving property-operations platform designed to help property managers organise properties, compliance requirements, tasks and operational workflows from one central dashboard.",
-    technologies: [
-      "Next.js",
-      "TypeScript",
-      "React",
-      "Tailwind CSS",
-      "Supabase",
-    ],
-    liveUrl: "https://prop-app-gorysms-projects.vercel.app/",
-    status: "Active development",
+      "A property management web application created to centralise essential property information and support day-to-day management processes.",
+    technologies: ["React", "JavaScript", "Firebase", "Bootstrap"],
+    liveUrl: "https://easyletspms.netlify.app/",
+    status: "Live project",
   },
 ];
 
