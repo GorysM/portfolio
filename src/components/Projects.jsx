@@ -13,7 +13,7 @@ const projects = [
       "Tailwind CSS",
       "Supabase",
     ],
-    liveUrl: "https://prop-app-git-auth-01-microsoft-oauth-callback-gorysms-projects.vercel.app/",
+    liveUrl: "https://www.letcore.co.uk",
     status: "Active development",
   },
   {
